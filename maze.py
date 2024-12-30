@@ -1,7 +1,7 @@
 from units import Cell
 from window import Window
 import time
-
+from typing import Optional
 class Maze:
     def __init__(
         self,
@@ -11,7 +11,7 @@ class Maze:
         num_cols,
         cell_size_x,
         cell_size_y,
-        win: Window,
+        win: Optional[Window]=None,
     ):
         
         self.x1 = x1
@@ -21,33 +21,34 @@ class Maze:
         self.cell_size_x = cell_size_x
         self.cell_size_y = cell_size_y
         self.win = win
-        self._cells = []
+        self._cells: list[list[Cell]] = []
         self._create_cells()
 
     def _create_cells(self):
-        for i in range(self.num_rows):
-            row = []
-            for j in range(self.num_cols):
-                row.append(Cell(self.win))
-            self._cells.append(row)
+        for i in range(self.num_cols):
+            col = []
+            for j in range(self.num_rows):
+                col.append(Cell(self.win))
+            self._cells.append(col)
     
-        for row in range(len(self._cells)):
-            for col in range(len(self._cells[row])):
-                self._draw_cell(row, col)
+        for colNum in range(len(self._cells)):
+            for rowNum in range(len(self._cells[colNum])):
+                self._draw_cell(colNum, rowNum)
 
         self._animate()
     
-    def _draw_cell(self, i, j):
+    def _draw_cell(self, colNum, rowNum):
         
-        cell_top_left_x = j * self.cell_size_x + self.x1
-        cell_top_left_y = i * self.cell_size_y + self.y1
+        cell_top_left_x = colNum * self.cell_size_x + self.x1
+        cell_top_left_y = rowNum * self.cell_size_y + self.y1
 
         cell_bottom_right_x = cell_top_left_x + self.cell_size_x
         cell_bottom_right_y = cell_top_left_y + self.cell_size_y
 
-        cell: Cell = self._cells[i][j]
+        cell: Cell = self._cells[colNum][rowNum]
         cell.draw(cell_top_left_x, cell_top_left_y, cell_bottom_right_x, cell_bottom_right_y)
     
     def _animate(self):
-        self.win.redraw()
+        if self.win:
+            self.win.redraw()
         time.sleep(0.05)

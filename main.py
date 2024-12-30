@@ -35,9 +35,18 @@ def cellDrawAndMoveTest():
 def maze_draw_test():
     win = Window(800, 600)
     
-    maze = Maze(50,100, 5, 10, 10,20,win)
+    maze = Maze(50,100, 5, 10, 10, 20,win)
     
     win.wait_for_close()
 
+def draw_without_win():
+    
+    maze = Maze(50,100,5,10,10,20)
+    bottom_open = Cell()
+    bottom_open.has_bottom_wall = False
+    bottom_open.draw(10,20,30,40)
+
 if __name__ == "__main__":
     maze_draw_test()
+    draw_without_win()
+

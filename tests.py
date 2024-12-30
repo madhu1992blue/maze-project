@@ -1,0 +1,51 @@
+import unittest
+
+from maze import Maze
+
+class Tests(unittest.TestCase):
+    def test_maze_create_cells(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        self.assertEqual(
+            len(m1._cells),
+            num_cols,
+        )
+        self.assertEqual(
+            len(m1._cells[0]),
+            num_rows,
+        )
+
+    def test_maze_cell_start(self):
+        num_cols = 5
+        num_rows = 5
+        m1 = Maze(5, 10, num_rows, num_cols, 10, 10)
+        first_cell = m1._cells[0][0]
+        
+        self.assertEqual(
+            first_cell.top_left.x,
+            5
+        )
+        self.assertEqual(
+            first_cell.top_left.y,
+            10,
+        )
+
+    def test_maze_cell_end(self):
+        num_cols = 5
+        num_rows = 5
+        m1 = Maze(5, 10, num_rows, num_cols, 10, 20)
+        last_cell = m1._cells[-1][-1]
+        
+        self.assertEqual(
+            last_cell.top_left.x,
+            10 * (num_cols -1) + 5
+        )
+        self.assertEqual(
+            last_cell.top_left.y,
+            20 * (num_rows-1) + 10
+        )
+        
+
+if __name__ == "__main__":
+    unittest.main()
