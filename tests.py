@@ -45,6 +45,21 @@ class Tests(unittest.TestCase):
             last_cell.top_left.y,
             20 * (num_rows-1) + 10
         )
+    
+    def test_maze_cell_break(self):
+        num_cols = 5
+        num_rows = 5
+        m1 = Maze(5, 10, num_rows, num_cols, 10, 20)
+        last_cell = m1._cells[-1][-1]
+        first_cell = m1._cells[0][0]
+        self.assertEqual(
+            last_cell.has_bottom_wall,
+            False
+        )
+        self.assertEqual(
+            first_cell.has_top_wall,
+            False
+        )
         
 
 if __name__ == "__main__":
