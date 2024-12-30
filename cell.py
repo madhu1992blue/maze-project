@@ -20,21 +20,21 @@ class Cell:
         self.bottom_right = Point(x2, y2)
 
         if self.has_left_wall:
-            left_wall_color = "red"
+            left_wall_color = "black"
         else: 
             left_wall_color = "#d9d9d9"
         left_wall_top = self.top_left
         left_wall_bottom = Point(self.top_left.x, self.bottom_right.y)
         
         if self.has_right_wall:
-            right_wall_color = "red"
+            right_wall_color = "black"
         else:
             right_wall_color = "#d9d9d9"
         right_wall_top = Point(self.bottom_right.x, self.top_left.y)
         right_wall_bottom = self.bottom_right
       
         if self.has_top_wall:
-            top_wall_color = "red"
+            top_wall_color = "black"
         else:
             top_wall_color ="#d9d9d9"
         top_wall_left = self.top_left
@@ -42,7 +42,7 @@ class Cell:
       
             
         if self.has_bottom_wall:
-            bottom_wall_color = "red"
+            bottom_wall_color = "black"
         else:
             bottom_wall_color = "#d9d9d9"
         bottom_wall_left = Point(self.top_left.x,self.bottom_right.y)
@@ -60,8 +60,8 @@ class Cell:
                                 (self.top_left.y+self.bottom_right.y) //2
                                 )
         to_cell_center = Point(
-                                (to_cell.__top_left.x + to_cell.__bottom_right.x)//2,
-                                (to_cell.__top_left.y+to_cell.__bottom_right.y) //2
+                                (to_cell.top_left.x + to_cell.bottom_right.x)//2,
+                                (to_cell.top_left.y+to_cell.bottom_right.y) //2
                                 )
         if not undo:
             color = "red"

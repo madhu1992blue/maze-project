@@ -35,8 +35,8 @@ def cellDrawAndMoveTest():
 def maze_draw_test():
     win = Window(800, 600)
     
-    maze = Maze(50,100, 5, 10, 10, 20,win)
-    
+    maze = Maze(0,0, 10, 10, 30, 30,win)
+    maze.solve()
     win.wait_for_close()
 
 def draw_without_win():
