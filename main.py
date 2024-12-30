@@ -1,6 +1,6 @@
 from window import Window
 from shapes import Line, Point
-from  units import Cell
+from  cell import Cell
 from maze import Maze
 
 def cellDrawAndMoveTest():

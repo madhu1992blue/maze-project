@@ -13,6 +13,7 @@ class Cell:
         self.top_left: Point = Point(0,0)
         self.bottom_right: Point = Point(0,0)
         self.win: Optional[Window] = win
+        self.visited = False
 
     def draw(self, x1, y1, x2, y2):
         self.top_left = Point(x1,y1)
